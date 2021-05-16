@@ -5,15 +5,15 @@ const { checkStoreAndDiff, setup } = require('./helpers')
 var { object0, object1, object1_1, object2,
       diff0, diff1, diff1_1, diff2 } = require('./constants')
 
-test('Multihyperbee - restore peers, restore HLC clock, cleanup peers', async t => {
+test('Multidwebtree - restore peers, restore HLC clock, cleanup peers', async t => {
   let storage = './test/mh/'
-  let { multiHBs, hasPeers } = await setup(2, storage)
+  let { multiDTs, hasPeers } = await setup(2, storage)
 
   if (hasPeers) {
     let storeArr = [object0, object1, object1_1]
     let diffArr = [diff0, diff1, diff1_1, diff2]
 
-    await checkStoreAndDiff(t, multiHBs, storeArr, diffArr)
+    await checkStoreAndDiff(t, multiDTs, storeArr, diffArr)
     rmstorage()
   }
   else
@@ -22,7 +22,7 @@ test('Multihyperbee - restore peers, restore HLC clock, cleanup peers', async t 
 })
 
 function rmstorage() {
-  let storages = ['./test/mh/', './test/mht/', './test/mht2']
+  let storages = ['./test/mh/', './test/mdt/', './test/mdt2']
   storages.forEach(storage => {
     rmdir(storage, error => {
       if (error)

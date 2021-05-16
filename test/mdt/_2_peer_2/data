@@ -1,0 +1,18 @@
+
+dwebtree
+multi-dwebtree-diff
+
+
+(Contact/r1/2021-05-12T17:04:27.807Z-0000‚{"_timestamp":"2021-05-12T17:04:27.807Z-0000","obj":{"_objectId":"Contact/r1"},"list":{"add":{"firstName":"Jane","lastName":"Smith","gender":"F","friends":["Claire","Martha","Jake","Sean"],"country":{"name":"United States"},"someField":0.11552650037050727}}}
+
+
+(Contact/r1/2021-05-13T15:14:55.255Z-0000°{"_timestamp":"2021-05-13T15:14:55.255Z-0000","obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-12T17:04:27.807Z-0000"},"list":{"add":{"someField":0.8345713835061164}}}
+
+
+(Contact/r1/2021-05-13T15:17:40.978Z-0000°{"_timestamp":"2021-05-13T15:17:40.978Z-0000","obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:14:55.255Z-0000"},"list":{"add":{"someField":0.6833147138962061}}}
+
+
+(Contact/r1/2021-05-13T15:29:16.267Z-0000±{"_timestamp":"2021-05-13T15:29:16.267Z-0000","obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:17:40.978Z-0000"},"list":{"add":{"someField":0.16418094713835418}}}
+	
+
+(Contact/r1/2021-05-16T09:01:03.856Z-0000°{"_timestamp":"2021-05-16T09:01:03.856Z-0000","obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:29:16.267Z-0000"},"list":{"add":{"someField":0.3488433182813926}}}

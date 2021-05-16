@@ -1,0 +1,15 @@
+
+dwebtree
+multi-dwebtree-diff
+
+
+(Contact/r2/2021-05-13T15:14:55.274Z-0000°{"_timestamp":"2021-05-13T15:14:55.274Z-0000","obj":{"_objectId":"Contact/r2","_prevTimestamp":"2021-05-12T17:04:27.839Z-0000"},"list":{"add":{"someField":0.3507777100678282}}}
+
+
+(Contact/r2/2021-05-13T15:17:41.011Z-0000±{"_timestamp":"2021-05-13T15:17:41.011Z-0000","obj":{"_objectId":"Contact/r2","_prevTimestamp":"2021-05-13T15:14:55.274Z-0000"},"list":{"add":{"someField":0.13561678327715443}}}
+
+
+(Contact/r2/2021-05-13T15:29:16.309Z-0000°{"_timestamp":"2021-05-13T15:29:16.309Z-0000","obj":{"_objectId":"Contact/r2","_prevTimestamp":"2021-05-13T15:17:41.011Z-0000"},"list":{"add":{"someField":0.6825932033047284}}}
+
+
+(Contact/r2/2021-05-16T09:01:03.896Z-0000¯{"_timestamp":"2021-05-16T09:01:03.896Z-0000","obj":{"_objectId":"Contact/r2","_prevTimestamp":"2021-05-13T15:29:16.309Z-0000"},"list":{"add":{"someField":0.588305953634124}}}

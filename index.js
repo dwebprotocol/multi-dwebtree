@@ -1,7 +1,7 @@
-const Hyperbee = require('hyperbee')
-const hypercore = require('hypercore')
-const auth = require('hypercore-peer-auth')
-const Protocol = require('hypercore-protocol')
+const DWebTree = require('dwebtree')
+const ddatabase = require('ddatabase')
+const auth = require('@ddatabase/peer-auth')
+const Protocol = require('@ddatabase/protocol')
 const Union = require('sorted-union-stream')
 const pump = require('pump')
 const { isEqual, size, extend } = require('lodash')
@@ -12,10 +12,10 @@ const { Timestamp, MutableTimestamp } = require('./timestamp')()
 
 const RELATED_FEEDS = '__peers'
 // This implementation uses HLC Clock implemented by James Long in his crdt demo app
-class MultiHyperbee extends Hyperbee {
+class MultiDTree extends DWebTree {
   constructor(storage, options, customMergeHandler) {
     let { valueEncoding, name, metadata } = options
-    let feed = hypercore(storage)
+    let feed = ddatabase(storage)
     let peersListKey
     if (!metadata)
       options.metadata = metadata = {}
@@ -43,20 +43,20 @@ class MultiHyperbee extends Hyperbee {
     let diffStorage
     let presistentStorage = typeof this.storage === 'string'
     if (presistentStorage)
-      diffStorage = `${this.storage}_diff` // place diffHyperbee in the same directory
+      diffStorage = `${this.storage}_diff` // place diffDWebTree in the same directory
     else
       diffStorage = this.storage // storage function chosen by user: could be ram, ras3, etc.
 
-    this.diffFeed = hypercore(diffStorage)
+    this.diffFeed = ddatabase(diffStorage)
 
     let options = { ...this.options }
     options.metadata = {
-      contentFeed: 'multi-hyperbee-diff'
+      contentFeed: 'multi-dwebtree-diff'
     }
 
-    this.diffHyperbee = new Hyperbee(this.diffFeed, options)
+    this.diffDWebTree = new DWebTree(this.diffFeed, options)
 
-    await this.diffHyperbee.ready()
+    await this.diffDWebTree.ready()
 
     let peers = presistentStorage  &&  await this._restorePeers()
 
@@ -100,9 +100,9 @@ class MultiHyperbee extends Hyperbee {
     }
 
     if (!value)
-      throw new Error('multi-hyperbee: value parameter is required')
+      throw new Error('multi-dwebtree: value parameter is required')
     if (!noDiff  &&  (typeof value !== 'object'  || value.constructor !== Object))
-      throw new Error('multi-hyperbee: value expected to be JSON object')
+      throw new Error('multi-dwebtree: value expected to be JSON object')
 
     if (!value._objectId)
       value._objectId = key
@@ -130,7 +130,7 @@ class MultiHyperbee extends Hyperbee {
       diff._timestamp = timestamp
       if (prevTimestamp)
         diff.obj._prevTimestamp = prevTimestamp
-      await this.diffHyperbee.put(`${key}/${timestamp}`, diff)
+      await this.diffDWebTree.put(`${key}/${timestamp}`, diff)
       return
     }
     if (noDiff) return
@@ -138,7 +138,7 @@ class MultiHyperbee extends Hyperbee {
     diff = this.mergeHandler.genDiff(value, cur  &&  cur.value)
     if (prevTimestamp)
       diff.obj._prevTimestamp = prevTimestamp
-    await this.diffHyperbee.put(`${key}/${timestamp}`, diff)
+    await this.diffDWebTree.put(`${key}/${timestamp}`, diff)
   }
   async peek() {
     await this._init
@@ -146,7 +146,7 @@ class MultiHyperbee extends Hyperbee {
   }
   async getDiff() {
     await this._init
-    return this.diffHyperbee
+    return this.diffDWebTree
   }
 
   async addPeer(key, allPeersKeyStrings) {
@@ -204,7 +204,7 @@ class MultiHyperbee extends Hyperbee {
     let peerList = await this._get(this.peerListKey)
     if (!peerList || !peerList.value ||  !peerList.value.length)
       return
-    let peersHB = []
+    let peersDT = []
     let keys = peerList.value
     let keyStrings = keys.map(key => key.toString('hex'))
     for (let i=0; i<keys.length; i++) {
@@ -212,23 +212,23 @@ class MultiHyperbee extends Hyperbee {
       let keyString = keyStrings[i]
 
       let peer = await this._addPeer(key, keyStrings)
-      peersHB.push(peer)
+      peersDT.push(peer)
       this.sources[keyString] = peer
     }
-    return peersHB
+    return peersDT
   }
   async removePeer (key) {
     await this._init
 
     const keyString = key.toString('hex')
-    const hyperbee = this.sources[keyString]
+    const dwebtree = this.sources[keyString]
 
-    if (!hyperbee) return false
+    if (!dwebtree) return false
 
     delete this.sources[keyString]
-    this.deletedSources[keyString] = hyperbee
+    this.deletedSources[keyString] = dwebtree
 
-    return hyperbee
+    return dwebtree
   }
   async getPeers() {
     await this._init
@@ -244,7 +244,7 @@ class MultiHyperbee extends Hyperbee {
       let hb  = this.sources[s]
       sortedStreams.push(hb.createReadStream(query))
     }
-    sortedStreams.push(this.diffHyperbee.createReadStream(query))
+    sortedStreams.push(this.diffDWebTree.createReadStream(query))
     if (sortedStreams.length === 1)
       return sortedStreams[0]
     let union
@@ -276,9 +276,9 @@ class MultiHyperbee extends Hyperbee {
     else
       peerStorage = this.storage
     let { valueEncoding } = this.options
-    let peerFeed = hypercore(peerStorage, key)
+    let peerFeed = ddatabase(peerStorage, key)
 
-    peer = new Hyperbee(peerFeed, this.options)
+    peer = new DWebTree(peerFeed, this.options)
     await peer.ready()
 
     this.sources[keyString] = peer
@@ -370,4 +370,4 @@ class MultiHyperbee extends Hyperbee {
     })
   }
 }
-module.exports = MultiHyperbee
+module.exports = MultiDTree

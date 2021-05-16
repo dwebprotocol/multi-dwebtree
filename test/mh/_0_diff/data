@@ -1,0 +1,18 @@
+
+dwebtree
+multi-dwebtree-diff
+
+
+(Contact/r1/2021-05-13T15:17:45.086Z-0000«{"obj":{"_objectId":"Contact/r1"},"list":{"add":{"firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"]}},"_timestamp":"2021-05-13T15:17:45.086Z-0000"}
+
+
+(Contact/r1/2021-05-13T15:29:20.389Z-0000Ü{"obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:17:45.086Z-0000"},"list":{"add":{"firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"]}},"_timestamp":"2021-05-13T15:29:20.389Z-0000"}
+
+
+(Contact/r1/2021-05-13T15:29:26.690Z-0000ç{"obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:29:20.389Z-0000"},"list":{"add":{"lastName":"Smith","gender":"F","firstName":"Jane","country":{"name":"United States"}}},"_timestamp":"2021-05-13T15:29:26.690Z-0000"}
+
+
+(Contact/r1/2021-05-16T09:01:07.981Z-0000Ü{"obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:29:26.795Z-0000"},"list":{"add":{"firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"]}},"_timestamp":"2021-05-16T09:01:07.981Z-0000"}
+	
+
+(Contact/r1/2021-05-16T09:01:14.278Z-0000ç{"obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-16T09:01:07.981Z-0000"},"list":{"add":{"lastName":"Smith","gender":"F","firstName":"Jane","country":{"name":"United States"}}},"_timestamp":"2021-05-16T09:01:14.278Z-0000"}

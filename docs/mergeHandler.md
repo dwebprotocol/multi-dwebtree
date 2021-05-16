@@ -1,9 +1,9 @@
 # Merge Handler
 
-All the calls to Merge Handler are done by MultiHyperbee. That means that if you want to use your own Merge Handler, it needs to be passed as a parameter to MultiHyperbee like this:
+All the calls to Merge Handler are done by MultiDTree. That means that if you want to use your own Merge Handler, it needs to be passed as a parameter to MultiDTree like this:
 
 ```
-const multiHyperbee = new MultiHyperbee(storage, [options], customMergeHandler)
+const multiHyperbee = new MultiDTree(storage, [options], customMergeHandler)
 ```
 
 MyltiHyperbee calls MergeHandler in these cases:
@@ -20,23 +20,23 @@ The **diff** object will have a key `key/_timestamp`. This way it'll be easy to 
 _Note_ **diff** object could be passed as **_diff** property of the **object**. It will be deleted from **object** before put of the **object** is executed.
 
 
-All the calls to Merge Handler are done by MultiHyperbee. Which means that if you write your own Merge Handler, it is need to be passed as a parameter to MultiHyperbee like this:
+All the calls to Merge Handler are done by MultiDTree. Which means that if you write your own Merge Handler, it is need to be passed as a parameter to MultiDTree like this:
 
 ```
-const multihyperbee = new MultiHyperbee(s, [options], customMergeHandler)
+const multihyperbee = new MultiDTree(s, [options], customMergeHandler)
 ```
 
 ## API
 
 #### `const mergeHandle = new MergeHandler(store)`
 Creates an instance of the Merge Handler for a particular multiHyperbee.
-`store` is a MultiHyperbee instance
+`store` is a MultiDTree instance
 
 #### `await mergeHandler.merge(diff)`
 Finds the object corresponding to **__objectId** in **diff** object and performs the merge. Algorithm below
 
 #### `const diffObject = genDiff(oldValue, newValue)`
-Generates **diff** object when multi-hyperbee **put** is called and no **_diff** object was passed with the **store** object
+Generates **diff** object when multi-dwebtree **put** is called and no **_diff** object was passed with the **store** object
 
 ## Algorithm for the default Merge Handler
 

@@ -4,7 +4,7 @@
 ```
  node examples/example.js -s [some storage name]
 ```
- using different storage name for different tabs. It will create directory structure for MultiHyperbee and print the **key** of the Diff Hyperbee.
+ using different storage name for different tabs. It will create directory structure for MultiDTree and print the **key** of the Diff DWebTree.
  - run command 
  ```
  node examples/example.js -s [some storage name] -k [array of the keys of the Diff Hyperbees from other tabs. Use comma as a delimiter]

@@ -1,0 +1,9 @@
+
+dwebtree
+multi-dwebtree-diff
+
+
+(Contact/r1/2021-05-13T15:29:26.795Z-0000¡{"obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:29:26.690Z-0000"},"list":{"add":{"nickname":"Jenny"},"insert":{"add":{"friends":[{"after":"Claire","value":"Kate"},{"after":"Martha","value":"Maggie"}],"country":{"code":"US"}}}},"_timestamp":"2021-05-13T15:29:26.795Z-0000"}
+
+
+(Contact/r1/2021-05-16T09:01:14.390Z-0000¡{"obj":{"_objectId":"Contact/r1","_prevTimestamp":"2021-05-16T09:01:14.278Z-0000"},"list":{"add":{"nickname":"Jenny"},"insert":{"add":{"friends":[{"after":"Claire","value":"Kate"},{"after":"Martha","value":"Maggie"}],"country":{"code":"US"}}}},"_timestamp":"2021-05-16T09:01:14.390Z-0000"}

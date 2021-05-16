@@ -1,0 +1,68 @@
+
+dwebtree	
+__peers
+
+
+__peersD["f17648b908ee3fb7007a0b19d71a8b3bb654def41a0cc864195a070024591532"]
+
+
+__peers‡["f17648b908ee3fb7007a0b19d71a8b3bb654def41a0cc864195a070024591532","e966c282383e4d8476fe0f5e9d1e664d0510cee66c3a3bfeeb3272f81f710a08"]
+
+
+
+Contact/r0±{"_objectId":"Contact/r0","firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"],"someField":0.9489172037667992,"_timestamp":"2021-05-12T17:04:27.720Z-0000"}
+
+
+
+Contact/r0ð{"_objectId":"Contact/r0","firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"],"someField":0.21921564676474614,"_timestamp":"2021-05-13T15:14:55.148Z-0000","_prevTimestamp":"2021-05-12T17:04:27.720Z-0000","_prevSeq":3}
+
+
+
+Contact/r1é{"_timestamp":"2021-05-12T17:04:27.807Z-0000","firstName":"Jane","lastName":"Smith","gender":"F","friends":["Claire","Martha","Jake","Sean"],"country":{"name":"United States"},"someField":0.11552650037050727,"_objectId":"Contact/r1"}
+
+
+
+Contact/r2f{"_timestamp":"2021-05-13T15:14:55.274Z-0000","someField":0.3507777100678282,"_objectId":"Contact/r2"}
+
+
+
+Contact/r1¦{"_timestamp":"2021-05-13T15:14:55.255Z-0000","firstName":"Jane","lastName":"Smith","gender":"F","friends":["Claire","Martha","Jake","Sean"],"country":{"name":"United States"},"someField":0.8345713835061164,"_objectId":"Contact/r1","_prevTimestamp":"2021-05-12T17:04:27.807Z-0000","_prevSeq":5}
+
+
+
+Contact/r0ï{"_objectId":"Contact/r0","firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"],"someField":0.5161292718700505,"_timestamp":"2021-05-13T15:17:40.881Z-0000","_prevTimestamp":"2021-05-13T15:14:55.148Z-0000","_prevSeq":4}
+
+
+	
+Contact/r1¦{"_timestamp":"2021-05-13T15:17:40.978Z-0000","firstName":"Jane","lastName":"Smith","gender":"F","friends":["Claire","Martha","Jake","Sean"],"country":{"name":"United States"},"someField":0.6833147138962061,"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:14:55.255Z-0000","_prevSeq":7}
+
+
+	
+
+Contact/r2¥{"_timestamp":"2021-05-13T15:17:41.011Z-0000","someField":0.13561678327715443,"_objectId":"Contact/r2","_prevTimestamp":"2021-05-13T15:14:55.274Z-0000","_prevSeq":6}
+
+
+	
+
+Contact/r0ï{"_objectId":"Contact/r0","firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"],"someField":0.2926738010292622,"_timestamp":"2021-05-13T15:29:16.173Z-0000","_prevTimestamp":"2021-05-13T15:17:40.881Z-0000","_prevSeq":8}
+
+
+
+
+Contact/r1§{"_timestamp":"2021-05-13T15:29:16.267Z-0000","firstName":"Jane","lastName":"Smith","gender":"F","friends":["Claire","Martha","Jake","Sean"],"country":{"name":"United States"},"someField":0.16418094713835418,"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:17:40.978Z-0000","_prevSeq":9}
+
+
+
+Contact/r2¥{"_timestamp":"2021-05-13T15:29:16.309Z-0000","someField":0.6825932033047284,"_objectId":"Contact/r2","_prevTimestamp":"2021-05-13T15:17:41.011Z-0000","_prevSeq":10}
+
+
+
+Contact/r0ð{"_objectId":"Contact/r0","firstName":"J","lastName":"S","friends":["Claire","Martha","Jake","Sean"],"someField":0.7837822411483291,"_timestamp":"2021-05-16T09:01:03.764Z-0000","_prevTimestamp":"2021-05-13T15:29:16.173Z-0000","_prevSeq":11}
+
+
+
+Contact/r1§{"_timestamp":"2021-05-16T09:01:03.856Z-0000","firstName":"Jane","lastName":"Smith","gender":"F","friends":["Claire","Martha","Jake","Sean"],"country":{"name":"United States"},"someField":0.3488433182813926,"_objectId":"Contact/r1","_prevTimestamp":"2021-05-13T15:29:16.267Z-0000","_prevSeq":12}
+
+
+
+Contact/r2¤{"_timestamp":"2021-05-16T09:01:03.896Z-0000","someField":0.588305953634124,"_objectId":"Contact/r2","_prevTimestamp":"2021-05-13T15:29:16.309Z-0000","_prevSeq":13}

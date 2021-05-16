@@ -1,5 +1,5 @@
 const test = require('tape')
-const Hyperbee = require('hyperbee')
+const DWebTree = require('dwebtree')
 const ram = require('random-access-memory')
 const cloneDeep = require('lodash/cloneDeep')
 const pump = require('pump')
@@ -8,13 +8,13 @@ const path = require('path')
 // const { promisify } = require('util')
 const { checkForPeers, checkStoreAndDiff, setup, delay } = require('./helpers')
 
-const MultiHyperbee = require('../')
+const MultiDTree = require('../')
 var { object0, object1, object1_1, object2,
       diff0, diff1, diff1_1, diff2 } = require('./constants')
 
-test('Multihyperbee - value should be JSON object', async t => {
-  let { multiHBs } = await setupReplChannel(1)
-  let mh = multiHBs[0]
+test('Multidwebtree - value should be JSON object', async t => {
+  let { multiDTs } = await setupReplChannel(1)
+  let mh = multiDTs[0]
   try {
     await mh.put('key', 'value')
   } catch(err) {
@@ -22,12 +22,12 @@ test('Multihyperbee - value should be JSON object', async t => {
   }
   t.end()
 })
-test('Multihyperbee - persistent storage, basic functionality', async t => {
+test('Multidwebtree - persistent storage, basic functionality', async t => {
   let storage = './test/mh/'
-  // let { multiHBs, hasPeers, streams } = await setupReplChannel(2, storage)
-  let { multiHBs } = await setupReplChannel(2, storage)
+  // let { multiDTs, hasPeers, streams } = await setupReplChannel(2, storage)
+  let { multiDTs } = await setupReplChannel(2, storage)
 
-  let [primary, secondary] = multiHBs
+  let [primary, secondary] = multiDTs
   await put(primary, diff0, object0)
   await delay(100)
   await put(primary, diff1, object1)
@@ -36,12 +36,12 @@ test('Multihyperbee - persistent storage, basic functionality', async t => {
   await delay(100)
   let storeArr = [object0, object1, object1_1]
   let diffArr = [diff0, diff1, diff1_1]
-  await checkStoreAndDiff(t, multiHBs, storeArr, diffArr)
+  await checkStoreAndDiff(t, multiDTs, storeArr, diffArr)
   t.end()
 })
-test('Multihyperbee - auto-generate diff', async t => {
-  const { multiHBs } = await setupReplChannel(2)
-  const [ primary, secondary ] = multiHBs
+test('Multidwebtree - auto-generate diff', async t => {
+  const { multiDTs } = await setupReplChannel(2)
+  const [ primary, secondary ] = multiDTs
 
   // The delays are artificial. Without them the mesages get lost for some reason
   await put(primary, diff0, object0)
@@ -54,7 +54,7 @@ await delay(100)
 await delay(100)
   let storeArr = [object0, object1, object1_1, object2]
   let diffArr = [diff0, diff1, diff1_1, diff2]
-  await checkStoreAndDiff(t, multiHBs, storeArr, diffArr)
+  await checkStoreAndDiff(t, multiDTs, storeArr, diffArr)
 
   if (diffArr.length)
     t.fail()
@@ -62,30 +62,30 @@ await delay(100)
 })
 
 async function setupReplChannel(count, storage) {
-  let { hasPeers, multiHBs } = await setup(count, storage)
+  let { hasPeers, multiDTs } = await setup(count, storage)
 
   let streams = []
-  for (let i=0; i<multiHBs.length; i++) {
+  for (let i=0; i<multiDTs.length; i++) {
     let cur = i
     let j = 0
-    let multiHB = multiHBs[i]
-    let diffFeed = (await multiHB.getDiff()).feed
-    for (; j<multiHBs.length; j++) {
+    let multiDT = multiDTs[i]
+    let diffFeed = (await multiDT.getDiff()).feed
+    for (; j<multiDTs.length; j++) {
       if (j === cur) continue
-      await multiHBs[j].addPeer(diffFeed.key)
+      await multiDTs[j].addPeer(diffFeed.key)
     }
   }
 
-  for (let i=0; i<multiHBs.length; i++) {
+  for (let i=0; i<multiDTs.length; i++) {
     let cur = i
     let j = 0
-    let multiHB = multiHBs[i]
+    let multiDT = multiDTs[i]
 
-    for (; j<multiHBs.length; j++) {
+    for (; j<multiDTs.length; j++) {
       if (j === cur) continue
-      let cloneFeeds = await multiHBs[j].getPeers()
+      let cloneFeeds = await multiDTs[j].getPeers()
       for (let ii=0; ii<cloneFeeds.length; ii++) {
-        let pstream = await multiHB.replicate(false, {live: true})
+        let pstream = await multiDT.replicate(false, {live: true})
         streams.push(pstream)
         let cstream = cloneFeeds[ii].feed.replicate(true, {live: true})
         streams.push(cstream)
@@ -93,16 +93,16 @@ async function setupReplChannel(count, storage) {
       }
     }
   }
-  return { multiHBs, hasPeers, streams }
+  return { multiDTs, hasPeers, streams }
 }
-async function put(hyperbee, diff, value) {
+async function put(dwebtree, diff, value) {
   // debugger
   let key = `${value._objectId}`
   let val = cloneDeep(value)
   if (diff)
     val._diff = cloneDeep(diff)
 
-  await hyperbee.put(key, val)
+  await dwebtree.put(key, val)
 }
 
 /*
@@ -121,8 +121,8 @@ async function put(hyperbee, diff, value) {
   // }
   // await delay(2000)
   // debugger
-  // for (let i=0; i<multiHBs.length; i++) {
-  //   let peers = await multiHBs[i].getPeers()
+  // for (let i=0; i<multiDTs.length; i++) {
+  //   let peers = await multiDTs[i].getPeers()
   //   for (let i=0; i<peers.length; i++) {
   //     let peer = prPeers[i]
   //     await promisify(peer.feed.close.bind(peer.feed))()

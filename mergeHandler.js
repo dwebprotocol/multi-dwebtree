@@ -1,7 +1,7 @@
 const Automerge = require('automerge')
 const { cloneDeep, size, extend, isEqual } = require('lodash')
 
-// MergeHandler must use store._put to notify MultiHyperbee that it does not need to
+// MergeHandler must use store._put to notify MultiDTree that it does not need to
 // generate diff object in this case
 
 class MergeHandler {

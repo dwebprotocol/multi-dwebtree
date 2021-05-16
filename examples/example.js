@@ -1,10 +1,10 @@
-const MultiHyperbee = require('../')
-const hyperswarm = require('hyperswarm')
+const MultiDTree = require('../')
+const dswarm = require('dswarm')
 const crypto = require('crypto')
 const pump = require('pump')
 const { promisify } = require('util')
-const auth = require('hypercore-peer-auth')
-const Protocol = require('hypercore-protocol')
+const auth = require('@ddatabase/peer-auth')
+const Protocol = require('@ddatabase/protocol')
 
 const { keys, storage } = require('minimist')(process.argv.slice(2), {
   alias: {
@@ -35,11 +35,11 @@ start()
 .then((started) => started  &&  console.log('Please enter some data'))
 
 async function start() {
-  const db = new MultiHyperbee(storage, OPTIONS )
+  const db = new MultiDTree(storage, OPTIONS )
   await db.ready()
-  const diffHyperbee = await db.getDiff() // after db.ready() there is no need to await for diffFeed
+  const diffDWebTree = await db.getDiff() // after db.ready() there is no need to await for diffFeed
 
-  let diffFeed = diffHyperbee.feed
+  let diffFeed = diffDWebTree.feed
   console.log(`${storage} diff key: ${diffFeed.key.toString('hex')}`)
   if (!keys || !keys.length) {
     return false
@@ -62,7 +62,7 @@ async function start() {
 }
 
 async function startSwarm(db, topic) {
-  var swarm = hyperswarm()
+  var swarm = dswarm()
   swarm.join(topic, {
     lookup: true,
     announce: true
